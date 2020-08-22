@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void calc(View view){
         Intent intent = new Intent(this, SecondActivity.class);
+
         EditText editText1 = (EditText) findViewById(R.id.editText);
         String number1 = editText1.getText().toString();
         intent.putExtra("number1", number1);

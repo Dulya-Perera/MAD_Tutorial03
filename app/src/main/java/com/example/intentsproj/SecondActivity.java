@@ -9,15 +9,13 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class SecondActivity extends AppCompatActivity {
 
-    private EditText N1;
-    private EditText N2;
-    private Button add;
-    private Button sub;
-    private Button mul;
-    private Button div;
-    private TextView textView1;
+    private EditText n1, n2;
+    private Button add, sub, mul, div;
+    private TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,62 +25,94 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         String number1 = intent.getStringExtra("number1");
-        EditText boxNumber1 = findViewById(R.id.editText3);
-        boxNumber1.setText(number1);
-
         String number2 = intent.getStringExtra("number2");
-        EditText boxNumber2 = findViewById(R.id.editText4);
-        boxNumber2.setText(number2);
 
-        final TextView textView = (TextView) findViewById(R.id.textView7);
+        n1 = (EditText) findViewById(R.id.editText3);
+        n2 = (EditText) findViewById(R.id.editText4);
+        add = (Button) findViewById(R.id.button2);
+        sub = (Button) findViewById(R.id.button3);
+        mul = (Button) findViewById(R.id.button4);
+        div = (Button) findViewById(R.id.button5);
+        result = (TextView) findViewById(R.id.textView7);
 
-        textView.setText(number1);
-
-        N1 = (EditText) findViewById(R.id.editText3);
-        N2 = (EditText) findViewById(R.id.editText4);
-       final TextView textView1 = (TextView) findViewById(R.id.textView7);
-
-        // Addition
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if((N1.getText().length()>0) && (N2.getText().length()>0))
-                {
-                    double oper1 = Double.parseDouble(N1.getText().toString());
-                    double oper2 = Double.parseDouble(N2.getText().toString());
-                    double result = oper1 + oper2;
-                    textView1.setText(Double.toString(result));
-                }
-                else{
-                    Toast toast= Toast.makeText(SecondActivity.this,"Enter The Required Numbers",Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            }
-        });
-
-
-
-
+        n1.setText(number1);
+        n2.setText(number2);
 
     }
 
-
-    // a public method to perform addition
-    public void doSum(View v)
+    public void doSum(View view)
     {
-        // get the input numbers
-        EditText editText = (EditText) findViewById(R.id.editText3);
-        //String number1 = editText.getText().toString();
-        int n1 = Integer.parseInt(editText.getText().toString());
+        Toast.makeText(getApplicationContext(), "Clicked +", Toast.LENGTH_SHORT).show();
 
-        EditText editText2 = (EditText) findViewById(R.id.editText4);
-        //String number2 = editText2.getText().toString();
-        int n2 = Integer.parseInt(editText.getText().toString());
+        String num1 = n1.getText().toString();
+        String num2 = n2.getText().toString();
 
-        int sum = n1 + n2;
+        int a = Integer.parseInt(num1);
+        int b = Integer.parseInt(num2);
 
-        TextView textView = (TextView) findViewById(R.id.textView7);
+        int sum = a + b;
 
-        textView.setText(n1);
+        StringBuilder output = new StringBuilder();
+        output.append("Answer: ");
+        output.append(num1 + "+" + num2 + "= ");
+        output.append(sum);
+        result.setText(output);
+    }
+
+    public void doSub(View view)
+    {
+        Toast.makeText(getApplicationContext(), "Clicked -", Toast.LENGTH_SHORT).show();
+
+        String num1 = n1.getText().toString();
+        String num2 = n2.getText().toString();
+
+        int a = Integer.parseInt(num1);
+        int b = Integer.parseInt(num2);
+
+        int sub = a - b;
+
+        StringBuilder output = new StringBuilder();
+        output.append("Answer: ");
+        output.append(num1 + " - " + num2 + " = ");
+        output.append(sub);
+        result.setText(output);
+    }
+
+    public void doMul(View view)
+    {
+        Toast.makeText(getApplicationContext(), "Clicked *", Toast.LENGTH_SHORT).show();
+
+        String num1 = n1.getText().toString();
+        String num2 = n2.getText().toString();
+
+        int a = Integer.parseInt(num1);
+        int b = Integer.parseInt(num2);
+
+        int mul = a * b;
+
+        StringBuilder output = new StringBuilder();
+        output.append("Answer: ");
+        output.append(num1 + " * " + num2 + " = ");
+        output.append(mul);
+        result.setText(output);
+    }
+
+    public void doDiv(View view)
+    {
+        Toast.makeText(getApplicationContext(), "Clicked /", Toast.LENGTH_SHORT).show();
+
+        String num1 = n1.getText().toString();
+        String num2 = n2.getText().toString();
+
+        int a = Integer.parseInt(num1);
+        int b = Integer.parseInt(num2);
+
+        int div = a / b;
+
+        StringBuilder output = new StringBuilder();
+        output.append("Answer: ");
+        output.append(num1 + " / " + num2 + " = ");
+        output.append(div);
+        result.setText(output);
     }
 }
